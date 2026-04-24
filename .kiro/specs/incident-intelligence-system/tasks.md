@@ -76,7 +76,7 @@ This implementation plan creates a standalone Laravel 12 application for intelli
     - Add try-catch for AI fallback to rule-based analysis
     - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.5, 5.8, 5.9, 6.1, 6.2, 6.3, 6.4, 6.5, 6.6_
 
-- [-] 4. Create API form requests and resources
+- [x] 4. Create API form requests and resources
   - [x] 4.1 Create StoreIncidentRequest
     - Validate service (required, string, max:255), message (required, string), context (nullable, array)
     - _Requirements: 1.2, 1.4, 1.5, 1.6, 1.7_
@@ -90,33 +90,33 @@ This implementation plan creates a standalone Laravel 12 application for intelli
     - Include analysis and occurrences relationships when loaded
     - _Requirements: 11.1, 11.2, 11.3_
   
-  - [ ] 4.4 Create IncidentAnalysisResource
+  - [x] 4.4 Create IncidentAnalysisResource
     - Return id, root_cause, suggested_fix, confidence_score, ai_generated, created_at
     - _Requirements: 11.2_
   
-  - [ ] 4.5 Create IncidentOccurrenceResource
+  - [x] 4.5 Create IncidentOccurrenceResource
     - Return id, context, created_at
     - _Requirements: 11.3_
 
-- [ ] 5. Create API controller and routes
-  - [ ] 5.1 Create IncidentController with store, index, show, update methods
+- [x] 5. Create API controller and routes
+  - [x] 5.1 Create IncidentController with store, index, show, update methods
     - Implement store method: validate, check for duplicate via DeduplicationService, create or record occurrence, dispatch IncidentCreatedJob, return 201 or 200
     - Implement index method: query with filters (service, severity, status), eager load relationships, paginate 25, return IncidentResource collection
     - Implement show method: load relationships, return IncidentResource
     - Implement update method: validate status, update incident, return IncidentResource
     - _Requirements: 1.1, 1.2, 1.3, 1.4, 2.1, 2.2, 2.3, 2.5, 4.1, 7.3, 7.4, 11.1, 11.2, 11.3, 11.4_
   
-  - [ ] 5.2 Add API routes in routes/api.php
+  - [x] 5.2 Add API routes in routes/api.php
     - POST /api/incidents, GET /api/incidents, GET /api/incidents/{incident}, PATCH /api/incidents/{incident}
     - _Requirements: 1.1_
 
-- [ ] 6. Create queue jobs for asynchronous processing
-  - [ ] 6.1 Create IncidentCreatedJob
+- [-] 6. Create queue jobs for asynchronous processing
+  - [x] 6.1 Create IncidentCreatedJob
     - Set tries=3, backoff=60, dispatch AnalyzeIncidentJob in handle method
     - Implement failed method to log error with incident context
     - _Requirements: 4.1, 4.2, 4.4, 4.5, 4.6, 13.6_
   
-  - [ ] 6.2 Create AnalyzeIncidentJob
+  - [-] 6.2 Create AnalyzeIncidentJob
     - Set tries=3, backoff=60, timeout=35, inject AnalysisService in handle method
     - Skip if analysis already exists, call analysisService->analyze
     - Implement failed method to log error and set incident status to open
