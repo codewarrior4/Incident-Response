@@ -132,37 +132,37 @@ This implementation plan creates a standalone Laravel 12 application for intelli
     - Add INCIDENT_AI_ENABLED, INCIDENT_OLLAMA_URL, INCIDENT_OLLAMA_MODEL, INCIDENT_OLLAMA_TIMEOUT, INCIDENT_QUEUE_CONNECTION, INCIDENT_ANALYSIS_RETRY_ATTEMPTS
     - _Requirements: 12.2, 12.3, 12.4, 12.5, 12.6, 12.7_
 
-- [ ] 8. Create dashboard controllers and views
-  - [ ] 8.1 Create DashboardController with index, show, recurring methods
+- [x] 8. Create dashboard controllers and views
+  - [x] 8.1 Create DashboardController with index, show, recurring methods
     - Implement index method: query with filters, eager load, withCount occurrences, paginate 25, return view with incidents and services
     - Implement show method: load analysis and occurrences relationships, return detail view
     - Implement recurring method: query with occurrences_count >= 1, filter by service/severity, order by occurrences_count desc, paginate 25
     - _Requirements: 8.1, 8.2, 8.3, 8.4, 8.5, 8.6, 8.7, 8.8, 8.9, 8.10, 9.1, 9.2, 9.3, 9.4, 9.5, 9.6, 9.7_
   
-  - [ ] 8.2 Create web routes in routes/web.php
+  - [x] 8.2 Create web routes in routes/web.php
     - GET / (dashboard.index), GET /incidents/{incident} (dashboard.show), GET /recurring (dashboard.recurring)
     - _Requirements: 8.1, 9.1_
   
-  - [ ] 8.3 Create layouts/app.blade.php layout
+  - [x] 8.3 Create layouts/app.blade.php layout
     - Include Tailwind CSS, Alpine.js 3, navigation menu, flash message display
     - _Requirements: 8.1_
   
-  - [ ] 8.4 Create dashboard/index.blade.php view
+  - [x] 8.4 Create dashboard/index.blade.php view
     - Display paginated incident list with title, service, severity badge, status, created_at
     - Add filter controls for service, severity, status using Alpine.js
     - _Requirements: 8.1, 8.2, 8.3, 8.4, 8.5_
   
-  - [ ] 8.5 Create dashboard/show.blade.php view
+  - [x] 8.5 Create dashboard/show.blade.php view
     - Display full incident details, analysis section with confidence score, occurrences timeline
     - Add status update form using Alpine.js
     - _Requirements: 8.6, 8.7, 8.8, 8.9, 8.10_
   
-  - [ ] 8.6 Create dashboard/recurring.blade.php view
+  - [x] 8.6 Create dashboard/recurring.blade.php view
     - Display incidents sorted by occurrence count with first/last occurrence timestamps
     - Add filter controls for service and severity
     - _Requirements: 9.1, 9.2, 9.3, 9.4, 9.5, 9.6, 9.7_
 
-- [-] 9. Create factories and seeders
+- [x] 9. Create factories and seeders
   - [x] 9.1 Create IncidentFactory with states
     - Define definition with fake data for all fields, generate realistic hash
     - Add critical() and resolved() states
@@ -183,7 +183,7 @@ This implementation plan creates a standalone Laravel 12 application for intelli
     - Create 2-5 occurrences for 20 incidents to simulate recurring issues
     - _Requirements: 14.9_
 
-- [-] 10. Checkpoint - Ensure all tests pass
+- [x] 10. Checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 11. Write unit tests for service classes
