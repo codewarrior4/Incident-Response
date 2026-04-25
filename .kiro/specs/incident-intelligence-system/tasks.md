@@ -110,25 +110,25 @@ This implementation plan creates a standalone Laravel 12 application for intelli
     - POST /api/incidents, GET /api/incidents, GET /api/incidents/{incident}, PATCH /api/incidents/{incident}
     - _Requirements: 1.1_
 
-- [-] 6. Create queue jobs for asynchronous processing
+- [x] 6. Create queue jobs for asynchronous processing
   - [x] 6.1 Create IncidentCreatedJob
     - Set tries=3, backoff=60, dispatch AnalyzeIncidentJob in handle method
     - Implement failed method to log error with incident context
     - _Requirements: 4.1, 4.2, 4.4, 4.5, 4.6, 13.6_
   
-  - [-] 6.2 Create AnalyzeIncidentJob
+  - [x] 6.2 Create AnalyzeIncidentJob
     - Set tries=3, backoff=60, timeout=35, inject AnalysisService in handle method
     - Skip if analysis already exists, call analysisService->analyze
     - Implement failed method to log error and set incident status to open
     - _Requirements: 4.2, 4.4, 4.5, 4.7, 5.5, 13.3, 13.5, 13.6_
 
-- [ ] 7. Create configuration file
-  - [ ] 7.1 Create config/incident-intelligence.php
+- [x] 7. Create configuration file
+  - [x] 7.1 Create config/incident-intelligence.php
     - Define ai_enabled, ollama_url, ollama_model, ollama_timeout, queue_connection, analysis_retry_attempts
     - Use env() with defaults: ai_enabled=false, ollama_url=http://localhost:11434, ollama_model=llama3, ollama_timeout=25, queue_connection=redis, analysis_retry_attempts=3
     - _Requirements: 6.7, 12.1, 12.2, 12.3, 12.4, 12.5, 12.6, 12.7_
   
-  - [ ] 7.2 Update .env.example with incident intelligence variables
+  - [x] 7.2 Update .env.example with incident intelligence variables
     - Add INCIDENT_AI_ENABLED, INCIDENT_OLLAMA_URL, INCIDENT_OLLAMA_MODEL, INCIDENT_OLLAMA_TIMEOUT, INCIDENT_QUEUE_CONNECTION, INCIDENT_ANALYSIS_RETRY_ATTEMPTS
     - _Requirements: 12.2, 12.3, 12.4, 12.5, 12.6, 12.7_
 
@@ -162,18 +162,18 @@ This implementation plan creates a standalone Laravel 12 application for intelli
     - Add filter controls for service and severity
     - _Requirements: 9.1, 9.2, 9.3, 9.4, 9.5, 9.6, 9.7_
 
-- [ ] 9. Create factories and seeders
-  - [ ] 9.1 Create IncidentFactory with states
+- [-] 9. Create factories and seeders
+  - [x] 9.1 Create IncidentFactory with states
     - Define definition with fake data for all fields, generate realistic hash
     - Add critical() and resolved() states
     - _Requirements: 14.9_
   
-  - [ ] 9.2 Create IncidentAnalysisFactory with states
+  - [x] 9.2 Create IncidentAnalysisFactory with states
     - Define definition with incident_id, fake root_cause/suggested_fix, random confidence_score, random ai_generated
     - Add aiGenerated() state (confidence 80-95) and ruleBased() state (confidence 60-80)
     - _Requirements: 14.9_
   
-  - [ ] 9.3 Create IncidentOccurrenceFactory
+  - [x] 9.3 Create IncidentOccurrenceFactory
     - Define definition with incident_id and realistic context JSON (user_id, ip_address, user_agent)
     - _Requirements: 14.9_
   
