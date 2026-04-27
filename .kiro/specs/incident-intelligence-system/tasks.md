@@ -186,21 +186,21 @@ This implementation plan creates a standalone Laravel 12 application for intelli
 - [x] 10. Checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 11. Write unit tests for service classes
-  - [ ]* 11.1 Write unit tests for DeduplicationService
+- [x] 11. Write unit tests for service classes
+  - [x]* 11.1 Write unit tests for DeduplicationService
     - Test generateHash produces SHA-256 hash
     - Test findExistingIncident returns null for new hash and incident for existing hash
     - Test recordOccurrence creates occurrence record with context
     - _Requirements: 2.1, 2.2, 2.3, 2.4, 14.7_
   
-  - [ ]* 11.2 Write unit tests for NormalizationService
+  - [x]* 11.2 Write unit tests for NormalizationService
     - Test removes timestamps, file paths, line numbers, UUIDs, IDs
     - Test normalizes whitespace
     - **Property 12: Normalization is idempotent**
     - **Validates: Requirements 5.1**
     - _Requirements: 5.1, 14.4_
   
-  - [ ]* 11.3 Write unit tests for ClassificationService
+  - [x]* 11.3 Write unit tests for ClassificationService
     - Test classifySeverity for all patterns (SQLSTATE→critical, timeout→high, deprecated→low, unauthorized→medium, default→medium)
     - Test classifyErrorType for database, network, auth, performance, unknown
     - Test generateAnalysis returns correct root_cause and suggested_fix for each error type
@@ -233,8 +233,8 @@ This implementation plan creates a standalone Laravel 12 application for intelli
     - Test has UUID primary key, belongs to incident, casts context to array
     - _Requirements: 2.4_
 
-- [ ] 13. Write feature tests for API endpoints
-  - [ ]* 13.1 Write feature tests for incident creation (IncidentControllerTest)
+- [x] 13. Write feature tests for API endpoints
+  - [x]* 13.1 Write feature tests for incident creation (IncidentControllerTest)
     - Test creates incident with valid data returns 201 with incident resource
     - Test missing service returns 422 with validation errors
     - Test missing message returns 422 with validation errors
@@ -248,7 +248,7 @@ This implementation plan creates a standalone Laravel 12 application for intelli
     - **Validates: Requirements 1.8, 1.9**
     - _Requirements: 1.1, 1.2, 1.3, 1.4, 1.8, 1.9, 7.1, 11.1, 11.5, 13.1, 14.1_
   
-  - [ ]* 13.2 Write feature tests for incident listing and filtering
+  - [x]* 13.2 Write feature tests for incident listing and filtering
     - Test lists incidents with pagination (25 per page)
     - Test filters by service, severity, status
     - Test response includes data, links, meta objects
@@ -256,14 +256,14 @@ This implementation plan creates a standalone Laravel 12 application for intelli
     - **Validates: Requirements 11.4**
     - _Requirements: 11.4, 14.1_
   
-  - [ ]* 13.3 Write feature tests for incident show endpoint
+  - [x]* 13.3 Write feature tests for incident show endpoint
     - Test shows single incident with analysis and occurrences relationships
     - Test response includes root_cause, suggested_fix, confidence_score, ai_generated, occurrences_count
     - **Property 19: API responses include required relationships**
     - **Validates: Requirements 11.2, 11.3**
     - _Requirements: 11.2, 11.3, 14.1_
   
-  - [ ]* 13.4 Write feature tests for incident status update
+  - [x]* 13.4 Write feature tests for incident status update
     - Test updates status with valid enum value
     - Test updates updated_at timestamp
     - Test rejects invalid status with 422
@@ -274,7 +274,7 @@ This implementation plan creates a standalone Laravel 12 application for intelli
     - _Requirements: 7.3, 7.4, 14.1_
 
 - [ ] 14. Write feature tests for deduplication
-  - [ ]* 14.1 Write deduplication feature tests
+  - [x]* 14.1 Write deduplication feature tests
     - Test creates new incident for unique hash
     - Test creates occurrence for duplicate hash (not new incident)
     - Test returns 200 for duplicate incident
